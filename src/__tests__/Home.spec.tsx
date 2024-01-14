@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
 
-import App from './App';
+import Home from '../routes/index';
 
-describe('App', () => {
+describe('Home', () => {
   it('should work as expected', () => {
-    render(<App />);
+    render(<Home />);
   });
 });
