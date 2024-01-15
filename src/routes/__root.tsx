@@ -5,5 +5,9 @@ export const Route = new RootRoute({
 });
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <main className="min-h-dvh">
+      <Outlet />
+    </main>
+  );
 }

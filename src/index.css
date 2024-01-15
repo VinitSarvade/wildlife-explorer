@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  min-height: 100dvh;
+@layer base {
+  html {
+    font-family: 'Inknut Antiqua', serif;
+  }
 }
 
 h1, h2, h3, h4 {
