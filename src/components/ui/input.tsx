@@ -4,4 +4,4 @@ const Input = twc.input`flex h-10 w-full rounded-md border border-wild-700 bg-wi
 
 Input.displayName = 'Input';
 
-export { Input };
+export default Input;
