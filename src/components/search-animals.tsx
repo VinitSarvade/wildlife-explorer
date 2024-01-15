@@ -1,5 +1,6 @@
 import { useCallback, useRef } from 'react';
 
+import { useNavigate } from '@tanstack/react-router';
 import { LucideSearch } from 'lucide-react';
 
 import Button from '@ui/button';
@@ -19,17 +20,29 @@ const topSearchAnimals = [
 ];
 
 export default function SearchAnimals() {
+  const navigate = useNavigate();
+
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const search = inputRef.current?.value;
-    console.log(search);
-  }, []);
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const animal = inputRef.current?.value;
 
-  const handlePillClick = useCallback((label: string) => {
-    inputRef.current!.value = label;
-  }, []);
+      if (animal) {
+        navigate({ to: `/search/$animal`, params: { animal } });
+      }
+    },
+    [navigate],
+  );
+
+  const handlePillClick = useCallback(
+    (animal: string) => {
+      inputRef.current!.value = animal;
+      navigate({ to: `/search/$animal`, params: { animal } });
+    },
+    [navigate],
+  );
 
   return (
     <>

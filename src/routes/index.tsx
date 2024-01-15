@@ -1,17 +1,9 @@
-import { FileRoute } from '@tanstack/react-router';
-
-import SearchAnimals from '@components/search-animals';
+import { FileRoute, Navigate } from '@tanstack/react-router';
 
 export const Route = new FileRoute('/').createRoute({
-  component: Home,
+  component: Root,
 });
 
-export default function Home() {
-  return (
-    <div className="container pt-10">
-      <h1 className="text-4xl text-center mb-10">Wildlife Explorer</h1>
-
-      <SearchAnimals />
-    </div>
-  );
+export default function Root() {
+  return <Navigate to="/search" />;
 }

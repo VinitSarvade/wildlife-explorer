@@ -8,6 +8,9 @@ export default {
   moduleNameMapper: {
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/testing-utils/fileMock.ts',
     '^.+\\.(css|less|scss|sass)$': '<rootDir>/testing-utils/cssMock.ts',
+    '^@ui/(.*)$': '<rootDir>/src/components/ui/$1',
+    '^@components/(.*)$': '<rootDir>/src/components/$1',
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
   },
   setupFilesAfterEnv: ['./testing-utils/setupTests.ts'],
   moduleFileExtensions: [
