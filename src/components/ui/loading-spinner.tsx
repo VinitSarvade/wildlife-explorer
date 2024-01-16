@@ -1,3 +1,5 @@
+import { RefreshCw } from 'lucide-react';
+
 export function LoadingSpinner({
   show,
   wait,
@@ -13,7 +15,7 @@ export function LoadingSpinner({
           : 'duration-500 opacity-0 delay-0'
       }`}
     >
-      &#9881;
+      <RefreshCw />
     </div>
   );
 }

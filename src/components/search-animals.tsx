@@ -1,48 +1,37 @@
-import { useCallback, useRef } from 'react';
+import { useRef } from 'react';
 
-import { useNavigate } from '@tanstack/react-router';
+import { useParams } from '@tanstack/react-router';
 import { LucideSearch } from 'lucide-react';
 
 import Button from '@ui/button';
 import Input from '@ui/input';
 import Pill from '@ui/pill';
 
+import { useSearchAnimals } from '../hooks/seach-animals';
+
 const topSearchAnimals = [
-  'Lion',
-  'Panda',
-  'Kangaroo',
-  'Elephant',
-  'Tiger',
-  'Dolphin',
-  'Gorilla',
-  'Giraffe',
-  'Polar Bear',
+  'lion',
+  'tiger',
+  'deer',
+  'elephant',
+  'snake',
+  'shark',
+  'gorilla',
+  'eagle',
+  'bear',
+  'wolf',
+  'whale',
 ];
 
 export default function SearchAnimals() {
-  const navigate = useNavigate();
+  const { animal } = useParams({ strict: false });
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      const animal = inputRef.current?.value;
-
-      if (animal) {
-        navigate({ to: `/search/$animal`, params: { animal } });
-      }
-    },
-    [navigate],
-  );
-
-  const handlePillClick = useCallback(
-    (animal: string) => {
-      inputRef.current!.value = animal;
-      navigate({ to: `/search/$animal`, params: { animal } });
-    },
-    [navigate],
-  );
+  const { handleSubmit, handlePillClick } = useSearchAnimals({
+    animal,
+    inputRef,
+  });
 
   return (
     <>
@@ -52,7 +41,7 @@ export default function SearchAnimals() {
       >
         <Input placeholder="Search for an animal" ref={inputRef} />
 
-        <Button type="submit">
+        <Button name="Search" type="submit">
           <LucideSearch />
           <span className="sr-only">Search</span>
         </Button>

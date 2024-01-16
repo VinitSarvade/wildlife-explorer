@@ -22,6 +22,7 @@ export default {
       black:colors.black,
       slate: colors.slate,
       red: colors.red,
+      zinc: colors.zinc,
       wild: {
         '50': 'hsl(120, 29%, 97%)',
         '100': 'hsl(120, 26%, 93%)',
@@ -48,8 +49,8 @@ export default {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-down": "accordion-down 0.7s ease-out",
+        "accordion-up": "accordion-up 0.7s ease-out",
       },
     },
   },

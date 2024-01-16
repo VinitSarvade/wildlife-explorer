@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
+import { QueryClient } from '@tanstack/react-query';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { ErrorComponent, Router, RouterProvider } from '@tanstack/react-router';
 
 import { LoadingSpinner } from '@ui/loading-spinner';
@@ -9,7 +11,17 @@ import { LoadingSpinner } from '@ui/loading-spinner';
 import './index.css';
 import { routeTree } from './routeTree.gen';
 
-const queryClient = new QueryClient();
+const persister = createSyncStoragePersister({
+  storage: window.localStorage,
+});
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      gcTime: 1000 * 60 * 60 * 24 * 7, // 1 week
+    },
+  },
+});
 
 const router = new Router({
   routeTree,
@@ -17,7 +29,7 @@ const router = new Router({
     queryClient,
   },
   defaultPendingComponent: () => (
-    <div className={`p-2 text-2xl`}>
+    <div className="p-2 text-2xl flex justify-center">
       <LoadingSpinner />
     </div>
   ),
@@ -25,7 +37,8 @@ const router = new Router({
     <ErrorComponent error={error} />
   ),
   defaultPreload: 'intent',
-  defaultPreloadStaleTime: 0, // let react-query handle data caching
+  // let react-query handle data caching
+  defaultPreloadStaleTime: 0,
 });
 
 declare module '@tanstack/react-router' {
@@ -39,9 +52,12 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
+      <PersistQueryClientProvider
+        client={queryClient}
+        persistOptions={{ persister }}
+      >
         <RouterProvider router={router} />
-      </QueryClientProvider>
+      </PersistQueryClientProvider>
     </React.StrictMode>,
   );
 }
