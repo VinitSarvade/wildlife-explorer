@@ -1,30 +1,22 @@
-# React + TypeScript + Vite
+# Wildlife explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**[https://wildlife-explorer.vercel.app/](https://wildlife-explorer.vercel.app/)**
 
-Currently, two official plugins are available:
+This is the frontend UI that let's you explore the wildlife animals and their details. It is build with React + Typescript + Vite. The API used for this is [API Ninjas Animals API](https://api-ninjas.com/api/animals). To secure the API key, the api is proxied from a cloudflare worker. The Proxy worker code can be found [here](https://github.com/VinitSarvade/wildlife-explorer/blob/main/cloudflare/worker.js)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## To run this code locally
 
-## Expanding the ESLint configuration
+1. Clone or download the repository to the desired location
+2. Run `pnpm install --frozen-lockfile` to install the dependencies
+3. Run `pnpm dev` to start the development server
+4. Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## To run the test cases
 
-- Configure the top-level `parserOptions` property like this:
+1. Run `pnpm test` to run the test cases
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## To build the code
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Run `pnpm build` to build the code
+2. Run `pnpx server -l 3200 ./dist` to serve the build code
+3. Open [http://localhost:3200](http://localhost:3200) to view it in the browser.
