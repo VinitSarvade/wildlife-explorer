@@ -1,12 +1,20 @@
-import { Beef, LeafyGreen, MapPinned } from 'lucide-react';
+import {
+  Beef,
+  LeafyGreen,
+  MapPinned,
+  ThumbsDown,
+  ThumbsUp,
+} from 'lucide-react';
 
 import {
   Card,
+  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from '@ui/card';
+import { countLikesAndDislikes } from '@utils/like-dislike-count';
 
 import { Animal, DietType } from '../types/animal';
 
@@ -16,12 +24,20 @@ interface AnimalListItemProps {
 
 const IconMap = {
   [DietType.Herbivore]: () => (
-    <span className="text-wild-400" title={DietType.Herbivore}>
+    <span
+      key={DietType.Herbivore}
+      className="text-wild-400"
+      title={DietType.Herbivore}
+    >
       <LeafyGreen size={16} />
     </span>
   ),
   [DietType.Carnivore]: () => (
-    <span className="text-red-400" title={DietType.Carnivore}>
+    <span
+      key={DietType.Carnivore}
+      className="text-red-400"
+      title={DietType.Carnivore}
+    >
       <Beef size={16} />
     </span>
   ),
@@ -32,8 +48,9 @@ const IconMap = {
 };
 
 export default function AnimalsListItem({ animal }: AnimalListItemProps) {
+  const { likes, dislikes } = countLikesAndDislikes(animal);
   return (
-    <Card key={animal.name.replace(/\s/g, '-')}>
+    <Card className="h-full">
       <CardHeader className="relative">
         <CardTitle>{animal.name}</CardTitle>
 
@@ -54,9 +71,27 @@ export default function AnimalsListItem({ animal }: AnimalListItemProps) {
         </div>
       </CardHeader>
 
-      <CardFooter className="italic text-sm gap-2">
-        <MapPinned size={24} />
-        {animal.locations.join(', ')}
+      <CardContent>
+        <p>{animal.characteristics.slogan}</p>
+      </CardContent>
+
+      <CardFooter className="italic text-sm flex justify-between">
+        <div className="flex items-center gap-2">
+          <MapPinned size={24} className="min-w-6" />
+          {animal.locations.join(', ')}
+        </div>
+
+        <div className="flex items-center gap-2">
+          <span className="flex items-center gap-1">
+            {likes}
+            <ThumbsUp size={16} />
+          </span>
+
+          <span className="flex items-center gap-1">
+            {dislikes}
+            <ThumbsDown size={16} />
+          </span>
+        </div>
       </CardFooter>
     </Card>
   );
