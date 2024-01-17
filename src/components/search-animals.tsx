@@ -48,7 +48,7 @@ export default function SearchAnimals() {
       </form>
 
       <div className="flex justify-center">
-        <div className="mt-5 flex flex-col lg:flex-row lg:items-center lg:gap-2 lg:justify-center">
+        <div className="mt-5 flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2 lg:justify-center">
           <h2 className="text-sm mb-3 lg:mb-0">Top Searches</h2>
 
           <div className="flex flex-wrap gap-2">

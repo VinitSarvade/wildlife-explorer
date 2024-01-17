@@ -11,7 +11,7 @@ export default function Pill({ label, onClick }: PillProps) {
 
   return (
     <div
-      className="text-sm bg-wild-50 capitalize px-2 py-1 rounded-full border border-wild-400 cursor-pointer hover:bg-wild-100"
+      className="text-xs bg-wild-50 capitalize px-3 py-1.5 rounded-full border border-wild-400 cursor-pointer hover:bg-wild-100"
       onClick={handleClick}
     >
       {label}
