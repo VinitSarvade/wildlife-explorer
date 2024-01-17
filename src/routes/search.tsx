@@ -26,7 +26,7 @@ export default function Search() {
       </div>
 
       <div className="bg-gradient-to-b from-wild-200 to-bg-wild-50">
-        <div className="container pb-20">
+        <div className="container pb-20 px-5 md:px-20">
           <Outlet />
         </div>
       </div>

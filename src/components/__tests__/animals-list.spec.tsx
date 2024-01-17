@@ -1,7 +1,17 @@
+import { PropsWithChildren } from 'react';
+
 import { render } from '@testing-library/react';
 
 import { Animal } from '../../types/animal';
 import AnimalsList from '../animals-list';
+
+jest.mock('@tanstack/react-router', () => ({
+  ...jest.requireActual('@tanstack/react-router'),
+  useParams: () => ({
+    animal: 'lion',
+  }),
+  Link: ({ children }: PropsWithChildren) => <>{children}</>,
+}));
 
 describe('AnimalsList', () => {
   it('should render the list of animals', () => {

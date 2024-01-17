@@ -1,4 +1,4 @@
-import { FileRoute } from '@tanstack/react-router';
+import { FileRoute, Outlet } from '@tanstack/react-router';
 
 import AnimalsList from '@components/animals-list';
 import { API } from '@utils/api';
@@ -23,6 +23,8 @@ export default function SearchResults() {
       <h2 className="text-2xl mb-5 capitalize">{animal}s</h2>
 
       <AnimalsList animals={animals} />
+
+      <Outlet />
     </>
   );
 }

@@ -3,6 +3,8 @@ export interface Animal {
   taxonomy: Taxonomy;
   locations: string[];
   characteristics: Characteristics;
+  taxonomy_key_preferences?: Record<string, -1 | 1>;
+  characteristic_key_preferences?: Record<string, -1 | 1>;
 }
 
 export interface Taxonomy {
