@@ -54,7 +54,7 @@ export default function SearchAnimals() {
           <div className="flex flex-wrap gap-2">
             {topSearchAnimals.map((animal, i) => (
               <Pill
-                key={`${i}-${animal.at(0)}`}
+                key={`${i}-${animal[0]}`}
                 label={animal}
                 onClick={handlePillClick}
               />
