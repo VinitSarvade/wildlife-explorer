@@ -11,6 +11,7 @@
     "test": "NODE_ENV=test jest"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@tanstack/query-sync-storage-persister": "^5.17.11",
     "@tanstack/react-query": "^5.17.10",
